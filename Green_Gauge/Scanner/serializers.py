@@ -1,8 +1,7 @@
-# scanner/serializers.py
 from rest_framework import serializers
-from .models import Product
+from .models import UploadedImage
 
-class ProductSerializer(serializers.ModelSerializer):
+class UploadedImageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Product
-        fields = ['id', 'name', 'material', 'carbon_footprint', 'sustainability_rating', 'description']
+        model = UploadedImage
+        fields = ['id', 'image', 'uploaded_at', 'processed_data']

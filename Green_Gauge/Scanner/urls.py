@@ -1,7 +1,7 @@
-# scanner/urls.py
+# Scanner/urls.py
 from django.urls import path
-from . import views
+from .views import ImageUploadView  # Import the class-based view
 
 urlpatterns = [
-    path('products/', views.ProductList.as_view(), name='product-list'),
+    path('scan/', ImageUploadView().as_view(), name='image-upload'),  # Use .as_view() to call the class-based view
 ]
