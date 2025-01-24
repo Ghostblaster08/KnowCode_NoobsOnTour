@@ -3,11 +3,10 @@ from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render
 
-def home_dashboard(request):
+def landing_page(request):
     return render(request, 'Landing_page/dashboard.html')
 
-def login_view(request):
-    return render(request,'login.html')
+def logsign(request):
+    return render(request,'logsign/logsign.html')
 
-def signup_view(request):
-    return render(request,'signup.html')
+
