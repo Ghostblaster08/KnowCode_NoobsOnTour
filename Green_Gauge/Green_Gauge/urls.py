@@ -6,8 +6,13 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+<<<<<<< HEAD
     path('', include('LandingPage.urls')),  # Landing page route
        path('api/scanner/', include('Scanner.urls')),  # API route for image upload (scanner)
+=======
+    path('', include('LandingPage.urls')),  
+    path('quiz/', include('Trivia_Quizzes.urls')),
+>>>>>>> 2f9f14e16991448ef73cd03c7f8cc0ab397c4a21
 ]
 
 # Serve media files during development (uploads, etc.)

@@ -7,6 +7,7 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.4.1",
     "@mui/material": "^6.4.1",
+    "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
     "cra-template": "1.2.0",
     "jquery": "^3.7.1",
@@ -14,8 +15,12 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^7.1.3",
+<<<<<<< HEAD
     "react-scripts": "^5.0.1",
     "react-webcam": "^7.2.0"
+=======
+    "react-scripts": "^5.0.1"
+>>>>>>> 2f9f14e16991448ef73cd03c7f8cc0ab397c4a21
   },
   "scripts": {
     "start": "react-scripts start",
