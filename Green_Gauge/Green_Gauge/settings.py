@@ -29,11 +29,26 @@ INSTALLED_APPS = [
     'Gamified_Batches',  # Add this line to include the Gamified_Batches app
     'Trivia_Quizzes', # Add this line to include the Trivia_Quizzes app
     
+    'users',
+    'rest_framework_simplejwt',
     'rest_framework',
     'corsheaders',
     'GreenBot',
     'Travel',
 ]
+
+AUTH_USER_MODEL = 'users.CustomUser'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
