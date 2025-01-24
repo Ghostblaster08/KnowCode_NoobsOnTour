@@ -42,13 +42,27 @@ INSTALLED_APPS = [
     'Scanner',  # Add this line to include the Scanner app
     'Community_challenges',  # Add this line to include the Community_challenges app
     'Gamified_Batches',  # Add this line to include the Gamified_Batches app
-    'Trivia_Quizzes' # Add this line to include the Trivia_Quizzes app
-    
+    'Trivia_Quizzes', # Add this line to include the Trivia_Quizzes app
+    'users',
+    'rest_framework_simplejwt',
     'rest_framework',
-     'corsheaders',
+    'corsheaders',
     'GreenBot',
     'Travel',
 ]
+
+AUTH_USER_MODEL = 'users.CustomUser'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
