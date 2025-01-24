@@ -1,28 +1,50 @@
+// Scanner.js (React component)
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const Scanner = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [image, setImage] = useState(null);
+  const [detectedObjects, setDetectedObjects] = useState([]);
 
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Implement your file upload logic here
-    console.log(selectedFile);
+  const handleUpload = async () => {
+    if (!image) return;
+
+    const formData = new FormData();
+    formData.append("image", image);
+
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/api/scanner/scan/", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      setDetectedObjects(response.data.detected_objects);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
   };
 
   return (
-    <div className="container mt-5">
-      <h1>Upload a Photo to Scan</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="fileInput">Select a photo:</label>
-          <input type="file" className="form-control-file" id="fileInput" onChange={handleFileChange} />
-        </div>
-        <button type="submit" className="btn btn-primary">Upload</button>
-      </form>
+    <div>
+      <h1>Object Detection</h1>
+
+      <input type="file" onChange={handleFileChange} />
+      <button onClick={handleUpload}>Upload Image</button>
+
+      <div>
+        {detectedObjects.length > 0 && (
+          <ul>
+            {detectedObjects.map((obj, index) => (
+              <li key={index}>
+                <strong>{obj.label}</strong> ({obj.confidence * 100}%)
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };
