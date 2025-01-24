@@ -21,6 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('LandingPage.urls')),  
     path('quiz/', include('Trivia_Quizzes.urls')),
-    path('dashboard/', include('Dashboard.urls')),
-    path('dashboard/travel/', include('Travel.urls')),
+    path('api/users/', include('users.urls')),
 ]
