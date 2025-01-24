@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.shortcuts import render
 
 def landing_page(request):
-    return render(request, 'Landing_page/dashboard.html')
+    return render(request, 'landing_page/landing-page.html')
 
 def logsign(request):
     return render(request,'logsign/logsign.html')

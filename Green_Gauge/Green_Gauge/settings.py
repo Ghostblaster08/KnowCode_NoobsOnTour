@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'LandingPage',  # Add this line to include the LandingPage app
     'Scanner',  # Add this line to include the Scanner app
-    'Ai_Chatbot',  # Add this line to include the Ai_Chatbot app
     'Community_challenges',  # Add this line to include the Community_challenges app
     'Gamified_Batches',  # Add this line to include the Gamified_Batches app
     
