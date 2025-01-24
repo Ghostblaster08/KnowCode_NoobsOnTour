@@ -1,0 +1,109 @@
+/* Jumbotron Styles */
+.jumbotron {
+    background-color: #f8f9fa;
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    border-radius: 0.3rem;
+}
+
+.jumbotron .container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.jumbotron h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.jumbotron p {
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+.jumbotron .btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 0.25rem;
+}
+
+.jumbotron .btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.jumbotron .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.jumbotron .btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+.jumbotron .btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Navbar Styles */
+.navbar {
+    padding: 1rem 1.5rem;
+    background-color: #343a40;
+}
+
+.navbar-brand {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: white;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #007bff;
+}
+
+/* Footer Styles */
+footer {
+    padding: 1rem;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Container Styles */
+.container {
+    padding: 2rem 1rem;
+}
+
+/* Grid Layout */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.col-md-4 {
+    width: 33.3333%;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 767px) {
+    .col-md-4 {
+        width: 100%;
+    }
+}

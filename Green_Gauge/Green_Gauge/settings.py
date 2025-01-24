@@ -44,6 +44,10 @@ INSTALLED_APPS = [
     'Gamified_Batches',  # Add this line to include the Gamified_Batches app
     'Trivia_Quizzes' # Add this line to include the Trivia_Quizzes app
     
+    'rest_framework',
+     'corsheaders',
+    'GreenBot',
+    'Travel',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'Green_Gauge.urls'
