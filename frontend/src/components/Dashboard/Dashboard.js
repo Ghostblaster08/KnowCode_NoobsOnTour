@@ -57,7 +57,7 @@ const Dashboard = () => {
             <div className="col-md-4">
               <h2>GreenBot</h2>
               <p>A specialized AI chatbot who will be your friend in the journey of reducing carbon footprints. It is very informative and answers queries regarding sustainability.</p>
-              <p><Link className="btn btn-secondary" to="/chatbot" role="button">View details &raquo;</Link></p>
+              <p><Link className="btn btn-secondary" to="/greenbot" role="button">View details &raquo;</Link></p>
             </div>
             <div className="col-md-4">
               <h2>Gamified Interface and Quizzes</h2>
