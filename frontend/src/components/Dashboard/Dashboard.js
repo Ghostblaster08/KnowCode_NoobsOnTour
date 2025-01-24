@@ -15,9 +15,6 @@ const Dashboard = () => {
             <li className="nav-item active">
               <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
             </li>
-            {/* <li className="nav-item active">
-              <a className="nav-link" href="#">Login/Signup</a>
-            </li> */}
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
               <div className="dropdown-menu" aria-labelledby="dropdown01">
@@ -59,6 +56,13 @@ const Dashboard = () => {
               <p>A specialized AI chatbot who will be your friend in the journey of reducing carbon footprints. It is very informative and answers queries regarding sustainability.</p>
               <p><Link className="btn btn-secondary" to="/greenbot" role="button">View details &raquo;</Link></p>
             </div>
+            <div className="col-md-4">
+              <h2>Travel</h2>
+              <p>Calculates the carbon footprint of your travel journey and provides insights for sustainable travel choices.</p>
+              <p><Link className="btn btn-secondary" to="/travel" role="button">View details &raquo;</Link></p>
+            </div>
+          </div>
+          <div className="row">
             <div className="col-md-4">
               <h2>Gamified Interface and Quizzes</h2>
               <p>Gamified interface such as exclusive badges/perks/points availed as rewards and quizzes held for educating people about sustainable practices.</p>
