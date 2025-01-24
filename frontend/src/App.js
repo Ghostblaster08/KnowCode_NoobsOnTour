@@ -1,19 +1,19 @@
-// src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './components/home';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Dashboard from './components/Dashboard/Dashboard';
+import Scanner from './components/Scanner/Scanner';
+import Chatbot from './components/Chatbot/Chatbot';
 
-const App = () => {
+function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        {/* Add other routes like Login/Signup */}
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/scanner" element={<Scanner />} />
+        <Route path="/chatbot" element={<Chatbot />} />
       </Routes>
     </Router>
   );
-};
+}
 
 export default App;
