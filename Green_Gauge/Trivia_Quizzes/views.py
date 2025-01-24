@@ -6,7 +6,7 @@ from django.http import HttpResponse
 
 # View to display quiz questions
 def quiz_view(request):
-    quiz = Quiz.objects.all()[1]  # Get the first quiz (you can modify this)
+    quiz = Quiz.objects.all()[4]  # Get the first quiz (you can modify this)
     questions = quiz.questions.all()[:5]  # Get the first 5 questions
     if request.method == "POST":
         score = 0
