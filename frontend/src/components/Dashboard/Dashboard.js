@@ -64,6 +64,11 @@ const Dashboard = () => {
           </div>
           <div className="row">
             <div className="col-md-4">
+              <h2>Barcode Scanning</h2>
+              <p>Scan product barcodes to get details about its eco-friendliness and carbon footprint.</p>
+              <p><Link className="btn btn-secondary" to="/barcode-scanner" role="button">Scan Barcode &raquo;</Link></p>
+            </div>
+            <div className="col-md-4">
               <h2>Gamified Interface and Quizzes</h2>
               <p>Gamified interface such as exclusive badges/perks/points availed as rewards and quizzes held for educating people about sustainable practices.</p>
               <p><a className="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>

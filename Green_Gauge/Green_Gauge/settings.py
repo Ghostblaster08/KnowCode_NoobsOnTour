@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     'Community_challenges',  # Add this line to include the Community_challenges app
     'Gamified_Batches',  # Add this line to include the Gamified_Batches app
     'Trivia_Quizzes', # Add this line to include the Trivia_Quizzes app
-    
+    'barcode',
     'users',
     'rest_framework_simplejwt',
     'rest_framework',

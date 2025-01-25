@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import Webcam from "react-webcam";
 import axios from "axios";
+import Quagga from "quagga";
 
 const Scanner = () => {
   const [image, setImage] = useState(null);
@@ -8,12 +9,13 @@ const Scanner = () => {
   const [barcodeData, setBarcodeData] = useState(null);
   const [error, setError] = useState("");
   const [cameraActive, setCameraActive] = useState(false);
+  const [barcodeScanning, setBarcodeScanning] = useState(false);
   const webcamRef = useRef(null);
 
   const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setImage(file);
+    setImage(e.target.files[0]);
     setBarcodeData(null);
+    setError("");
   };
 
   const handleUpload = async () => {
@@ -29,14 +31,24 @@ const Scanner = () => {
       const response = await axios.post("http://127.0.0.1:8000/api/scanner/scan/", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      if (response.data.detected_objects) {
-        setDetectedObjects(response.data.detected_objects);
-      } else {
-        setError("No objects detected.");
-      }
+      setDetectedObjects(response.data.detected_objects || []);
+      setError(response.data.detected_objects ? "" : "No objects detected.");
     } catch (err) {
       setError("Error uploading image.");
     }
+  };
+
+  const startCamera = () => {
+    setCameraActive(true);
+    setDetectedObjects([]);
+    setBarcodeData(null);
+    setError("");
+  };
+
+  const stopCamera = () => {
+    setCameraActive(false);
+    setBarcodeScanning(false);
+    Quagga.stop(); // Ensure Quagga is stopped to avoid runtime errors.
   };
 
   const captureFromCamera = async () => {
@@ -50,23 +62,62 @@ const Scanner = () => {
     setBarcodeData(null);
   };
 
-  const handleBarcodeScan = async (barcode) => {
+  const startBarcodeScanning = () => {
+    setBarcodeScanning(true);
+    setCameraActive(true);
+    setError("");
+
+    // Ensure the DOM element exists before initializing Quagga
+    const scannerElement = document.querySelector("#barcode-scanner");
+    if (!scannerElement) {
+      setError("Barcode scanner element not found.");
+      setBarcodeScanning(false);
+      return;
+    }
+
+    Quagga.init(
+      {
+        inputStream: {
+          name: "Live",
+          type: "LiveStream",
+          target: scannerElement, // Attach to the scanner DOM element
+        },
+        decoder: {
+          readers: ["ean_reader", "upc_reader"], // Add any other formats you need
+        },
+      },
+      (err) => {
+        if (err) {
+          console.error("Quagga initialization failed:", err);
+          setError("Failed to initialize barcode scanner.");
+          setBarcodeScanning(false);
+          return;
+        }
+        Quagga.start();
+      }
+    );
+
+    // Handle barcode detection
+    Quagga.onDetected((data) => {
+      const barcode = data.codeResult.code;
+      console.log("Detected barcode:", barcode);
+
+      // Stop Quagga after detecting a barcode
+      Quagga.stop();
+      setBarcodeScanning(false);
+      setCameraActive(false);
+      fetchBarcodeData(barcode);
+    });
+  };
+
+  const fetchBarcodeData = async (barcode) => {
     try {
       const response = await axios.get(`http://127.0.0.1:8000/api/scanner/barcode/${barcode}/`);
       setBarcodeData(response.data);
+      setError("");
     } catch (err) {
       setError("Error fetching barcode data.");
     }
-  };
-
-  const startCamera = () => {
-    setCameraActive(true);
-    setDetectedObjects([]);
-    setBarcodeData(null);
-  };
-
-  const stopCamera = () => {
-    setCameraActive(false);
   };
 
   return (
@@ -77,9 +128,22 @@ const Scanner = () => {
         <button onClick={handleUpload}>Upload Image</button>
         <button onClick={startCamera}>Open Camera</button>
         <button onClick={stopCamera}>Close Camera</button>
+        <button onClick={startBarcodeScanning}>Scan Barcode</button>
       </div>
 
-      {cameraActive && (
+      {/* Image preview section */}
+      {image && (
+        <div>
+          <h3>Uploaded Image Preview:</h3>
+          <img
+            src={URL.createObjectURL(image)}
+            alt="Preview"
+            style={{ maxWidth: "400px", maxHeight: "300px", marginTop: "20px" }}
+          />
+        </div>
+      )}
+
+      {cameraActive && !barcodeScanning && (
         <div>
           <Webcam
             ref={webcamRef}
@@ -91,6 +155,12 @@ const Scanner = () => {
             }}
           />
           <button onClick={captureFromCamera}>Capture Image</button>
+        </div>
+      )}
+
+      {barcodeScanning && (
+        <div id="barcode-scanner" style={{ width: "400px", height: "300px" }}>
+          {/* Barcode scanner will render here */}
         </div>
       )}
 
